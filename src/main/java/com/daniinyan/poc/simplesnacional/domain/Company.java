@@ -1,22 +1,16 @@
-package com.daniinyan.poc.simplesnacional;
+package com.daniinyan.poc.simplesnacional.domain;
 
 public class Company {
     private String name;
-    private String attachment;
+    private Attachment attachment;
     private Double lastYearRevenue;
 
-    public Company(String name, String attachment, Double lastYearRevenue) {
+    public Company(String name, Attachment attachment, Double lastYearRevenue) {
         this.name = name;
         this.attachment = attachment;
         this.lastYearRevenue = lastYearRevenue;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAttachment() {
-        return attachment;
+        this.attachment.setLastYearRevenue(this.lastYearRevenue);
     }
 
     public Double getLastYearRevenue() {
@@ -24,10 +18,10 @@ public class Company {
     }
 
     public Double getAliquot() {
-        return 0.18;
+        return attachment.getAliquot();
     }
 
     public Double getDeducePortion() {
-        return 4500D;
+        return attachment.getDeducePortion();
     }
 }

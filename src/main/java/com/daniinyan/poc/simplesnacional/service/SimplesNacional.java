@@ -1,4 +1,6 @@
-package com.daniinyan.poc.simplesnacional;
+package com.daniinyan.poc.simplesnacional.service;
+
+import com.daniinyan.poc.simplesnacional.domain.Company;
 
 public class SimplesNacional {
 
