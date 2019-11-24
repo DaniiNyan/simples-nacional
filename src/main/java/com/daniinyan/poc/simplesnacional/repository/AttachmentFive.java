@@ -1,7 +1,6 @@
 package com.daniinyan.poc.simplesnacional.repository;
 
 import com.daniinyan.poc.simplesnacional.domain.Tax;
-import io.reactivex.rxjava3.core.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +30,7 @@ public class AttachmentFive implements Attachment {
     }
 
     @Override
-    public Observable<Double> getReferenceAliquot(Double lastYearRevenue) {
-        return Observable.fromIterable(taxes)
-                .filter(tax -> lastYearRevenue >= tax.getFrom() && lastYearRevenue <= tax.getTo())
-                .map(Tax::getReferenceAliquot);
-    }
-
-    @Override
-    public Double getDeducePortion(Double lastYearRevenue) {
-        return null;
+    public List<Tax> getTaxes() {
+        return this.taxes;
     }
 }

@@ -1,8 +1,9 @@
 package com.daniinyan.poc.simplesnacional.repository;
 
-import io.reactivex.rxjava3.core.Observable;
+import com.daniinyan.poc.simplesnacional.domain.Tax;
+
+import java.util.List;
 
 public interface Attachment {
-    Observable<Double> getReferenceAliquot(Double lastYearRevenue);
-    Double getDeducePortion(Double lastYearRevenue);
+    List<Tax> getTaxes();
 }

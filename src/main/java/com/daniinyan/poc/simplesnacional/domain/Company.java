@@ -7,6 +7,7 @@ public class Company {
     private Attachment attachment;
     private Double calculationBasis;
     private Double lastYearRevenue;
+    private Double effectiveAliquot;
 
 
     public Company(Attachment attachment, Double calculationBasis, Double lastYearRevenue) {
@@ -18,11 +19,21 @@ public class Company {
     public Attachment getAttachment() {
         return attachment;
     }
+
     public Double getCalculationBasis() {
         return calculationBasis;
     }
 
     public Double getLastYearRevenue() {
         return lastYearRevenue;
+    }
+
+    public Double getEffectiveAliquot() {
+        return effectiveAliquot;
+    }
+
+    public Company setEffectiveAliquot(Double effectiveAliquot) {
+        this.effectiveAliquot = effectiveAliquot;
+        return this;
     }
 }
