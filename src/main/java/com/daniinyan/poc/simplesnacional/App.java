@@ -1,43 +1,32 @@
 package com.daniinyan.poc.simplesnacional;
 
-import com.daniinyan.poc.simplesnacional.domain.Attachment;
-import com.daniinyan.poc.simplesnacional.domain.AttachmentFive;
 import com.daniinyan.poc.simplesnacional.domain.Company;
-import com.daniinyan.poc.simplesnacional.service.SimplesNacional;
+import com.daniinyan.poc.simplesnacional.repository.Attachment;
+import com.daniinyan.poc.simplesnacional.repository.AttachmentFive;
+import com.daniinyan.poc.simplesnacional.service.SimplesNacionalService;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-        Attachment attachment1 = new AttachmentFive();
-        SimplesNacional simplesNacional = new SimplesNacional();
 
-        Observable<Company> companiesObservable =
-                Observable.just(new Company("Company One", attachment1, 185_000D));
+        Attachment attachmentFive = new AttachmentFive();
+        List<Company> companies = new ArrayList<>();
+        Company companyOne = new Company(attachmentFive, 30_000D, 200_000D);
+        Company companyTwo = new Company(attachmentFive, 100_000D, 750_000D);
+        Company companyThree = new Company(attachmentFive, 500_000D, 4_000_000D);
+        companies.add(companyOne);
+        companies.add(companyTwo);
+        companies.add(companyThree);
 
-        Observer<Company> simplesNacionalObserver = new Observer<Company>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                System.out.println(d);
-            }
+        SimplesNacionalService simplesNacionalService = new SimplesNacionalService();
 
-            @Override
-            public void onNext(Company company) {
-                System.out.println(simplesNacional.calculate(company));
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                System.out.println(e);
-            }
-
-            @Override
-            public void onComplete() {
-                System.out.println("done");
-            }
-        };
-
-        companiesObservable.safeSubscribe(simplesNacionalObserver);
+        Observable.fromIterable(companies)
+                .map(company -> simplesNacionalService.calculate(companies))
+                .map(Map::values)
+                .subscribe(System.out::println);
     }
 }

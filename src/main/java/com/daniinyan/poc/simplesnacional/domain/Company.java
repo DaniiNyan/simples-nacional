@@ -1,27 +1,39 @@
 package com.daniinyan.poc.simplesnacional.domain;
 
+import com.daniinyan.poc.simplesnacional.repository.Attachment;
+
 public class Company {
-    private String name;
+
     private Attachment attachment;
+    private Double calculationBasis;
     private Double lastYearRevenue;
+    private Double effectiveAliquot;
 
-    public Company(String name, Attachment attachment, Double lastYearRevenue) {
-        this.name = name;
+
+    public Company(Attachment attachment, Double calculationBasis, Double lastYearRevenue) {
         this.attachment = attachment;
+        this.calculationBasis = calculationBasis;
         this.lastYearRevenue = lastYearRevenue;
+    }
 
-        this.attachment.setLastYearRevenue(this.lastYearRevenue);
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public Double getCalculationBasis() {
+        return calculationBasis;
     }
 
     public Double getLastYearRevenue() {
         return lastYearRevenue;
     }
 
-    public Double getAliquot() {
-        return attachment.getAliquot();
+    public Double getEffectiveAliquot() {
+        return effectiveAliquot;
     }
 
-    public Double getDeducePortion() {
-        return attachment.getDeducePortion();
+    public Company setEffectiveAliquot(Double effectiveAliquot) {
+        this.effectiveAliquot = effectiveAliquot;
+        return this;
     }
 }
